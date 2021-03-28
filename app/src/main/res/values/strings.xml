@@ -13,4 +13,8 @@
     <string name="following">Following</string>
     <string name="followers">Followers</string>
     <string name="error">Something Wrong</string>
+    <string name="not_found">User not found</string>
+    <string name="type">User</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
