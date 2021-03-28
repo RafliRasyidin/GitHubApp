@@ -148,6 +148,20 @@
                         app:layout_constraintTop_toBottomOf="@+id/view_decor"
                         tools:listitem="@layout/item_list_user" />
 
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/loading"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view_decor"
+                        app:shimmer_auto_start="true">
+
+                        <include layout="@layout/shimmer_effect"/>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.core.widget.NestedScrollView>

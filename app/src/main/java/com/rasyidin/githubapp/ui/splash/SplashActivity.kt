@@ -8,7 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.rasyidin.githubapp.core.utils.Constants.SPLASH_DELAY
 import com.rasyidin.githubapp.databinding.ActivitySplashBinding
 import com.rasyidin.githubapp.ui.main.MainActivity
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 
+@FlowPreview
+@ExperimentalCoroutinesApi
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding

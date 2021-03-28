@@ -1,10 +1,17 @@
 package com.rasyidin.githubapp.ui.detail
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayoutMediator
+import com.rasyidin.githubapp.R
+import com.rasyidin.githubapp.core.adapter.SectionPagerAdapter
+import com.rasyidin.githubapp.core.data.source.Resource
 import com.rasyidin.githubapp.core.domain.model.User
 import com.rasyidin.githubapp.databinding.ActivityDetailBinding
+import com.rasyidin.githubapp.core.adapter.SectionPagerAdapter.Companion.TAB_TITLES
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
 
@@ -14,7 +21,9 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
 
-    private var user: User? = null
+    private val viewModel: DetailViewModel by viewModel()
+
+    private var mediator: TabLayoutMediator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,29 +32,63 @@ class DetailActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        user = intent.getParcelableExtra(EXTRA_DATA)
+        val user: User? = intent.getParcelableExtra(EXTRA_DATA)
 
-        showDetailUser(user)
+        subscribeToObserver(user?.username)
+
+        initViewPager()
+
+        initTabLayout()
     }
 
-    private fun showDetailUser(user: User?) {
-        binding.apply {
-            user?.let {
-                supportActionBar?.title = it.username
-                Glide.with(this@DetailActivity)
-                    .load(resources.getIdentifier(it.avatar, "Drawable", packageName))
-                    .into(imgUser)
+    private fun subscribeToObserver(username: String?) {
+        viewModel.getDetailUser(username).observe(this) { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    resource.data?.let { user ->
+                        binding.apply {
+                            supportActionBar?.title = username
+                            Glide.with(this@DetailActivity)
+                                .load(user.avatar)
+                                .placeholder(R.drawable.ic_github)
+                                .error(R.drawable.ic_broken_image)
+                                .into(imgUser)
 
-                desc.tvRepository.text = it.repository.toString()
-                desc.tvFollowing.text = it.following.toString()
-                desc.tvFollowers.text = it.follower.toString()
-
-                tvName.text = it.name
-                tvCompany.text = it.company
-                tvLocation.text = it.location
-
+                            desc.tvRepository.text = user.repository.toString()
+                            desc.tvFollowing.text = user.following.toString()
+                            desc.tvFollowers.text = user.follower.toString()
+                            tvName.text = user.name
+                            tvCompany.text = user.company
+                            tvLocation.text = user.location
+                        }
+                    }
+                }
+                is Resource.Error -> {
+                    Toast.makeText(this, resources.getString(R.string.error), Toast.LENGTH_SHORT)
+                        .show()
+                }
+                is Resource.Loading -> Unit
             }
         }
+
+    }
+
+    private fun initViewPager() {
+        val sectionPagerAdapter = SectionPagerAdapter(supportFragmentManager, lifecycle)
+        binding.vp.viewPager.apply {
+            adapter = sectionPagerAdapter
+            offscreenPageLimit = 2
+        }
+    }
+
+    private fun initTabLayout() {
+        mediator = TabLayoutMediator(binding.vp.tabs, binding.vp.viewPager) { tab, pos ->
+            tab.text = when (pos) {
+                0 -> getString(TAB_TITLES[0])
+                else -> getString(TAB_TITLES[1])
+            }
+        }
+        mediator?.attach()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -56,6 +99,13 @@ class DetailActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediator?.detach()
+        mediator = null
+        binding.vp.viewPager.adapter = null
     }
 
 }

@@ -3,8 +3,11 @@ package com.rasyidin.githubapp.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.rasyidin.githubapp.R
@@ -12,8 +15,13 @@ import com.rasyidin.githubapp.core.adapter.UserAdapter
 import com.rasyidin.githubapp.core.data.source.Resource
 import com.rasyidin.githubapp.databinding.ActivityMainBinding
 import com.rasyidin.githubapp.ui.detail.DetailActivity
-import org.koin.android.viewmodel.ext.android.viewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@ExperimentalCoroutinesApi
+@FlowPreview
 class MainActivity : AppCompatActivity() {
 
     companion object {
@@ -35,26 +43,26 @@ class MainActivity : AppCompatActivity() {
 
         setupBottomSheet()
 
-        setupRecyclerView()
+        setupUserRecyclerView()
 
         onItemClick()
+
+        searchUser()
 
         subscribeToObserver()
 
         navigateToSetting()
-
-        searchUser()
     }
 
-    private fun setupRecyclerView() = binding.rvUsers.apply {
+    private fun setupUserRecyclerView() = binding.rvUsers.apply {
         userAdapter = UserAdapter()
+        binding.rvUsers.adapter = userAdapter
         layoutManager = LinearLayoutManager(this@MainActivity)
-        adapter = userAdapter
         setHasFixedSize(true)
     }
 
     private fun onItemClick() {
-        userAdapter.onItemClick = { selectedItem ->
+        userAdapter.onItemClickListener = { selectedItem ->
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_DATA, selectedItem)
             startActivity(intent)
@@ -62,28 +70,68 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun searchUser() {
-        binding.searchUser.setOnClickListener {
-            Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show()
-        }
+        binding.searchUser.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                lifecycleScope.launch {
+                    viewModel.queryChannel.send(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                lifecycleScope.launch {
+                    viewModel.queryChannel.send(newText)
+                }
+                return true
+            }
+        })
     }
 
     private fun subscribeToObserver() {
-        viewModel.getUsers().observe(this) { resource ->
+        viewModel.getUsers.observe(this) { resource ->
             when (resource) {
                 is Resource.Success -> {
+                    binding.loading.visibility = View.GONE
                     resource.data?.let {
                         userAdapter.setData(it)
                     }
                 }
                 is Resource.Error -> {
-                    Toast.makeText(this, resources.getString(R.string.error), Toast.LENGTH_SHORT).show()
+                    binding.loading.visibility = View.GONE
+                    Toast.makeText(
+                        this,
+                        resources.getString(R.string.error),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     Log.e(TAG, "Message: ${resource.message}")
                 }
                 is Resource.Loading -> {
+                    binding.loading.visibility = View.VISIBLE
                 }
             }
         }
-
+        viewModel.searchUsers.observe(this) { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    binding.loading.visibility = View.GONE
+                    resource.data?.let {
+                        userAdapter.setData(it)
+                    }
+                }
+                is Resource.Error -> {
+                    binding.loading.visibility = View.GONE
+                    Toast.makeText(
+                        this,
+                        resources.getString(R.string.error),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Log.e(TAG, "Message: ${resource.message}")
+                }
+                is Resource.Loading -> {
+                    binding.loading.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 
     private fun setupBottomSheet() {
