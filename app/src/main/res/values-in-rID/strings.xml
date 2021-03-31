@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitHubApp</string>
+    <string name="username">Nama Pengguna</string>
+    <string name="find_a_developer">Temukan Developer Hebat di Sini</string>
+    <string name="image_setting">Gambar Pengaturan</string>
+    <string name="hint_search">Cari…</string>
+    <string name="users">List Pengguna</string>
+    <string name="_0">0</string>
+    <string name="repository">Repository</string>
+    <string name="following">Mengikuti</string>
+    <string name="followers">Pengikut</string>
+    <string name="error">Sesuatu ada yang salah</string>
+    <string name="not_found">Pengguna tidak ditemukan</string>
+    <string name="type">Pengguna</string>
+</resources>

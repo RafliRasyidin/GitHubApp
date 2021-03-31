@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">GitHubApp</string>
     <string name="username">Username</string>
-    <string name="name">Name</string>
-    <string name="location">Location</string>
-    <string name="company">Company</string>
     <string name="find_a_developer">Find Great Developers Here</string>
     <string name="image_setting">Image_Setting</string>
     <string name="hint_search">Search…</string>
@@ -15,6 +12,4 @@
     <string name="error">Something Wrong</string>
     <string name="not_found">User not found</string>
     <string name="type">User</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
