@@ -2,6 +2,7 @@ package com.rasyidin.githubapp.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -92,12 +93,14 @@ class MainActivity : AppCompatActivity() {
             when (resource) {
                 is Resource.Success -> {
                     binding.loading.visibility = View.GONE
+                    binding.lottieNoData.visibility = View.GONE
                     resource.data?.let {
                         userAdapter.setData(it)
                     }
                 }
                 is Resource.Error -> {
                     binding.loading.visibility = View.GONE
+                    binding.lottieNoData.visibility = View.VISIBLE
                     Toast.makeText(
                         this,
                         resources.getString(R.string.error),
@@ -107,6 +110,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 is Resource.Loading -> {
                     binding.loading.visibility = View.VISIBLE
+                    binding.lottieNoData.visibility = View.GONE
                 }
             }
         }
@@ -114,21 +118,27 @@ class MainActivity : AppCompatActivity() {
             when (resource) {
                 is Resource.Success -> {
                     binding.loading.visibility = View.GONE
+                    binding.lottieNoData.visibility = View.GONE
+                    binding.rvUsers.visibility = View.VISIBLE
                     resource.data?.let {
                         userAdapter.setData(it)
                     }
                 }
                 is Resource.Error -> {
                     binding.loading.visibility = View.GONE
+                    binding.lottieNoData.visibility = View.VISIBLE
+                    binding.rvUsers.visibility = View.GONE
                     Toast.makeText(
                         this,
-                        resources.getString(R.string.error),
+                        resources.getString(R.string.not_found),
                         Toast.LENGTH_SHORT
                     ).show()
                     Log.e(TAG, "Message: ${resource.message}")
                 }
                 is Resource.Loading -> {
+                    binding.rvUsers.visibility = View.GONE
                     binding.loading.visibility = View.VISIBLE
+                    binding.lottieNoData.visibility = View.GONE
                 }
             }
         }
@@ -146,7 +156,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToSetting() {
         binding.imgSetting.setOnClickListener {
-            Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            startActivity(intent)
         }
     }
 }
