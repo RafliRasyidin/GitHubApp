@@ -22,11 +22,5 @@
 
         <include layout="@layout/item_list_user_placeholder" />
 
-        <include layout="@layout/item_list_user_placeholder" />
-
-        <include layout="@layout/item_list_user_placeholder" />
-
-        <include layout="@layout/item_list_user_placeholder" />
-
     </LinearLayout>
 </ScrollView>

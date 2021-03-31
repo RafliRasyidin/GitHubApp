@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/view_decor"
+            android:id="@+id/view_decor_round"
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_marginStart="16dp"
@@ -60,9 +60,9 @@
             android:layout_marginStart="8dp"
             android:background="@color/colorShade"
             android:textColor="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@+id/view_decor"
-            app:layout_constraintStart_toEndOf="@+id/view_decor"
-            app:layout_constraintTop_toTopOf="@+id/view_decor" />
+            app:layout_constraintBottom_toBottomOf="@+id/view_decor_round"
+            app:layout_constraintStart_toEndOf="@+id/view_decor_round"
+            app:layout_constraintTop_toTopOf="@+id/view_decor_round" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
