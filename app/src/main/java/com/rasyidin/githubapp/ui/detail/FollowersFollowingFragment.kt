@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.rasyidin.githubapp.R
 import com.rasyidin.githubapp.core.adapter.UserAdapter
 import com.rasyidin.githubapp.core.data.source.Resource
 import com.rasyidin.githubapp.core.domain.model.User
@@ -69,13 +67,15 @@ class FollowersFollowingFragment : Fragment() {
     }
 
     private fun observeFollowing() {
-        viewModel.getUserFollowing(user?.username).observe(viewLifecycleOwner) { resource ->
+        viewModel.getUserFollowing(user?.username)
+        viewModel.followingUser.observe(viewLifecycleOwner) { resource ->
             showUserFollowersFollowing(resource)
         }
     }
 
     private fun observeFollowers() {
-        viewModel.getUserFollowers(user?.username).observe(viewLifecycleOwner) { resource ->
+        viewModel.getUserFollowers(user?.username)
+        viewModel.followersUser.observe(viewLifecycleOwner) { resource ->
             showUserFollowersFollowing(resource)
         }
     }
@@ -84,15 +84,19 @@ class FollowersFollowingFragment : Fragment() {
         when (resource) {
             is Resource.Success -> {
                 binding.loading.visibility = View.GONE
+                binding.lottieNoData.visibility = View.GONE
                 resource.data?.let { users ->
                     userAdapter.setData(users)
                 }
             }
             is Resource.Error -> {
                 binding.loading.visibility = View.GONE
-                Toast.makeText(activity, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                binding.lottieNoData.visibility = View.VISIBLE
             }
-            is Resource.Loading -> binding.loading.visibility = View.VISIBLE
+            is Resource.Loading -> {
+                binding.loading.visibility = View.VISIBLE
+                binding.lottieNoData.visibility = View.GONE
+            }
         }
     }
 
