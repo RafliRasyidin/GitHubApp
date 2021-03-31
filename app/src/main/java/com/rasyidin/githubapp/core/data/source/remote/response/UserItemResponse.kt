@@ -5,32 +5,32 @@ import com.google.gson.annotations.SerializedName
 data class UserItemResponse(
 
     @field:SerializedName("id")
-    val id: Int? = null,
+    val id: Int,
 
     @field:SerializedName("avatar_url")
-    val avatarUrl: String? = "",
+    val avatarUrl: String,
 
     @field:SerializedName("company")
-    val company: String? = "",
+    val company: String,
 
     @field:SerializedName("followers")
-    val follower: Int? = 0,
+    val follower: Int,
 
     @field:SerializedName("following")
-    val following: Int? = 0,
+    val following: Int,
 
     @field:SerializedName("location")
-    val location: String? = "",
+    val location: String,
 
     @field:SerializedName("name")
-    val name: String? = "",
+    val name: String,
 
     @field:SerializedName("public_repos")
-    val repository: Int? = 0,
+    val repository: Int,
 
     @field:SerializedName("login")
-    val username: String? = "",
+    val username: String,
 
     @field:SerializedName("type")
-    val type: String? = ""
+    val type: String
 )

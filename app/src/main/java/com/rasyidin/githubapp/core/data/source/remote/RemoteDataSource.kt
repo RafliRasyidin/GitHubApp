@@ -35,7 +35,7 @@ class RemoteDataSource(private val apiService: ApiService) {
         return flow {
             try {
                 val response = apiService.getDetailUser(username)
-                if (response.username?.isNotEmpty() ?: return@flow) {
+                if (response.username.isNotEmpty()) {
                     emit(ApiResponse.Success(response))
                 } else {
                     emit(ApiResponse.Empty)
@@ -84,7 +84,7 @@ class RemoteDataSource(private val apiService: ApiService) {
             try {
                 val response = apiService.searchUsers(query)
                 val data = response.items
-                if (data?.isNotEmpty() ?: return@flow) {
+                if (data.isNotEmpty()) {
                     emit(ApiResponse.Success(data))
                 } else {
                     emit(ApiResponse.Empty)
