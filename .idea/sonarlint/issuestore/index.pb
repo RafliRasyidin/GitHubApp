@@ -1,8 +1,6 @@
 
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-q
-Aapp/src/main/java/com/rasyidin/githubapp/core/utils/JsonHelper.kt,2\4\240e4d5ec00ed657104c9ceb9c0928e948b31b2b
 {
 Kapp/src/main/java/com/rasyidin/githubapp/core/data/source/UserRepository.kt,a\4\a4cfbfa97e45e4f058106b30e62ca320a52e15f8
 „
@@ -57,5 +55,11 @@ Papp/src/main/java/com/rasyidin/githubapp/ui/detail/FollowersFollowingFragment.k
 Lapp/src/main/java/com/rasyidin/githubapp/core/adapter/SectionPagerAdapter.kt,0\c\0cabcc8154fe79b673a9d43143e7981be726fb22
 t
 Dapp/src/main/java/com/rasyidin/githubapp/core/adapter/BaseAdapter.kt,3\3\330ae0804e09318398f01e9448bf5753b70e888b
-v
-Fapp/src/main/java/com/rasyidin/githubapp/core/adapter/SearchAdapter.kt,e\6\e6b5c5dd554c9026ab4eb6dc844aef7d2e4effc4
+]
+-app/src/main/res/drawable/ic_broken_image.xml,b\7\b7acc13e07beebd8772d20dc1d1f78f628d578c1
+b
+2app/src/main/res/layout/vp_followers_following.xml,d\5\d5bc966d22ba1d95d056d569f65ae65140acb0c5
+R
+"app/src/main/res/values/colors.xml,9\6\969faa2a5d9f5e8390e958d2c07f2cfd54676e6b
+‚
+Rapp/src/main/java/com/rasyidin/githubapp/core/utils/ImageViewExtensionsFunction.kt,7\a\7afb3cc71eb95af0706cc1e050f5e04d19f26685
