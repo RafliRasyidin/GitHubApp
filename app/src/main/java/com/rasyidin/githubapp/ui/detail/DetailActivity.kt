@@ -3,14 +3,14 @@ package com.rasyidin.githubapp.ui.detail
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.rasyidin.githubapp.R
 import com.rasyidin.githubapp.core.adapter.SectionPagerAdapter
+import com.rasyidin.githubapp.core.adapter.SectionPagerAdapter.Companion.TAB_TITLES
 import com.rasyidin.githubapp.core.data.source.Resource
 import com.rasyidin.githubapp.core.domain.model.User
+import com.rasyidin.githubapp.core.utils.loadImage
 import com.rasyidin.githubapp.databinding.ActivityDetailBinding
-import com.rasyidin.githubapp.core.adapter.SectionPagerAdapter.Companion.TAB_TITLES
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
@@ -42,18 +42,18 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun subscribeToObserver(username: String?) {
-        viewModel.getDetailUser(username).observe(this) { resource ->
+        viewModel.getDetailUser(username)
+        viewModel.detailUser.observe(this) { resource ->
             when (resource) {
                 is Resource.Success -> {
                     resource.data?.let { user ->
                         binding.apply {
                             supportActionBar?.title = username
-                            Glide.with(this@DetailActivity)
-                                .load(user.avatar)
-                                .placeholder(R.drawable.ic_github)
-                                .error(R.drawable.ic_broken_image)
-                                .into(imgUser)
-
+                            imgUser.loadImage(
+                                user.avatar,
+                                R.drawable.ic_github,
+                                R.drawable.ic_broken_image
+                            )
                             desc.tvRepository.text = user.repository.toString()
                             desc.tvFollowing.text = user.following.toString()
                             desc.tvFollowers.text = user.follower.toString()
@@ -70,7 +70,6 @@ class DetailActivity : AppCompatActivity() {
                 is Resource.Loading -> Unit
             }
         }
-
     }
 
     private fun initViewPager() {
