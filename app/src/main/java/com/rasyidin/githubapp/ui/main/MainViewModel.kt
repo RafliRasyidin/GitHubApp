@@ -1,7 +1,10 @@
 package com.rasyidin.githubapp.ui.main
 
-import androidx.lifecycle.*
-import com.rasyidin.githubapp.core.data.source.Resource
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.rasyidin.githubapp.core.data.Resource
 import com.rasyidin.githubapp.core.domain.model.User
 import com.rasyidin.githubapp.core.domain.usecase.IUserUseCase
 import com.rasyidin.githubapp.core.utils.Constants.DEBOUNCE_DURATION
