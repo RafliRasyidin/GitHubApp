@@ -17,4 +17,6 @@
     <string name="image_back">Favorite Image</string>
     <string name="favorited">Favorited</string>
     <string name="unfavorited">Unfavorite</string>
+    <string name="icon_location">Icon Location</string>
+    <string name="icon_company">Icon Company</string>
 </resources>

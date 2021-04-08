@@ -53,8 +53,6 @@ t
 Dapp/src/main/java/com/rasyidin/githubapp/core/adapter/BaseAdapter.kt,3\3\330ae0804e09318398f01e9448bf5753b70e888b
 ]
 -app/src/main/res/drawable/ic_broken_image.xml,b\7\b7acc13e07beebd8772d20dc1d1f78f628d578c1
-R
-"app/src/main/res/values/colors.xml,9\6\969faa2a5d9f5e8390e958d2c07f2cfd54676e6b
 P
  app/src/main/assets/no_data.json,8\7\871f4f5d003b2027ea3fde68fc45af13510d73eb
 }

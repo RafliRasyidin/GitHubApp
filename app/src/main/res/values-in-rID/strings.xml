@@ -18,4 +18,6 @@
     <string name="image_back">Gambar Kembali</string>
     <string name="favorited">Disukai</string>
     <string name="unfavorited">Tidak Disukai</string>
+    <string name="icon_location">Gambar Lokasi</string>
+    <string name="icon_company">Gambar Perusahaan</string>
 </resources>

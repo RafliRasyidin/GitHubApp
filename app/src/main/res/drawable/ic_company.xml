@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="@android:color/darker_gray"
+        android:pathData="m452,301.989h-90.333v-286.989c0,-8.284 -6.716,-15 -15,-15h-181.334c-8.284,0 -15,6.716 -15,15v226.989h-90.333c-8.284,0 -15,6.716 -15,15v240.011c0,8.284 6.716,15 15,15h392c8.284,0 15,-6.716 15,-15v-180.011c0,-8.284 -6.716,-15 -15,-15zM180.333,30h151.334v271.989h-75.667v-45c0,-8.284 -6.716,-15 -15,-15h-60.667zM75,271.989h151v210.011h-30v-45.011c0,-8.284 -6.716,-15 -15,-15h-61c-8.284,0 -15,6.716 -15,15v45.011h-30zM166,482h-31v-30.011h31zM362,482h-31v-30.011h31zM437,482h-45v-45.011c0,-8.284 -6.716,-15 -15,-15h-61c-8.284,0 -15,6.716 -15,15v45.011h-45v-150.011h181z" />
+    <path
+        android:fillColor="@android:color/darker_gray"
+        android:pathData="m326,361.989c-8.284,0 -15,6.716 -15,15s6.716,15 15,15h41c8.284,0 15,-6.716 15,-15s-6.716,-15 -15,-15z" />
+    <path
+        android:fillColor="@android:color/darker_gray"
+        android:pathData="m129.833,391.989h41c8.284,0 15,-6.716 15,-15s-6.716,-15 -15,-15h-41c-8.284,0 -15,6.716 -15,15s6.716,15 15,15z" />
+    <path
+        android:fillColor="@android:color/darker_gray"
+        android:pathData="m129.833,331.989h41c8.284,0 15,-6.716 15,-15s-6.716,-15 -15,-15h-41c-8.284,0 -15,6.716 -15,15s6.716,15 15,15z" />
+    <path
+        android:fillColor="@android:color/darker_gray"
+        android:pathData="m235.5,90h41c8.284,0 15,-6.716 15,-15s-6.716,-15 -15,-15h-41c-8.284,0 -15,6.716 -15,15s6.716,15 15,15z" />
+    <path
+        android:fillColor="@android:color/darker_gray"
+        android:pathData="m235.5,150h41c8.284,0 15,-6.716 15,-15s-6.716,-15 -15,-15h-41c-8.284,0 -15,6.716 -15,15s6.716,15 15,15z" />
+    <path
+        android:fillColor="@android:color/darker_gray"
+        android:pathData="m291.5,195c0,-8.284 -6.716,-15 -15,-15h-41c-8.284,0 -15,6.716 -15,15s6.716,15 15,15h41c8.284,0 15,-6.716 15,-15z" />
+</vector>

@@ -53,22 +53,48 @@
         app:layout_constraintTop_toBottomOf="@+id/img_user"
         tools:text="Name" />
 
+    <ImageView
+        android:id="@+id/img_company"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/icon_company"
+        android:src="@drawable/ic_company"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
     <TextView
         android:id="@+id/tv_company"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@+id/tv_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+        app:layout_constraintBottom_toBottomOf="@+id/img_company"
+        app:layout_constraintStart_toEndOf="@+id/img_company"
+        app:layout_constraintTop_toTopOf="@+id/img_company"
         tools:text="Company" />
+
+    <ImageView
+        android:id="@+id/img_location"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/icon_location"
+        android:src="@drawable/ic_pin_location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_company" />
 
     <TextView
         android:id="@+id/tv_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@+id/tv_company"
-        app:layout_constraintTop_toBottomOf="@+id/tv_company"
+        app:layout_constraintBottom_toBottomOf="@+id/img_location"
+        app:layout_constraintStart_toEndOf="@+id/img_location"
+        app:layout_constraintTop_toTopOf="@+id/img_location"
         tools:text="Location" />
 
     <include
