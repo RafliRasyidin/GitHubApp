@@ -9,4 +9,6 @@ object Constants {
     const val REQUEST_TIMEOUT = 120L
 
     const val DEBOUNCE_DURATION = 500L
+
+    const val SUFFIX_CHARS = "KMBTPE"
 }
