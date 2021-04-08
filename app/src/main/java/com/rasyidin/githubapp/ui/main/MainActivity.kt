@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.rasyidin.githubapp.R
 import com.rasyidin.githubapp.core.adapter.UserAdapter
-import com.rasyidin.githubapp.core.data.source.Resource
+import com.rasyidin.githubapp.core.data.Resource
 import com.rasyidin.githubapp.databinding.ActivityMainBinding
 import com.rasyidin.githubapp.ui.detail.DetailActivity
+import com.rasyidin.githubapp.ui.favorite.FavoriteActivity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.launch
@@ -53,11 +54,13 @@ class MainActivity : AppCompatActivity() {
         subscribeToObserver()
 
         navigateToSetting()
+
+        navigateToFavorite()
     }
 
     private fun setupUserRecyclerView() = binding.rvUsers.apply {
         userAdapter = UserAdapter()
-        binding.rvUsers.adapter = userAdapter
+        adapter = userAdapter
         layoutManager = LinearLayoutManager(this@MainActivity)
         setHasFixedSize(true)
     }
@@ -65,7 +68,7 @@ class MainActivity : AppCompatActivity() {
     private fun onItemClick() {
         userAdapter.onItemClickListener = { selectedItem ->
             val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_DATA, selectedItem)
+            intent.putExtra(DetailActivity.EXTRA_DATA, selectedItem.username)
             startActivity(intent)
         }
     }
@@ -157,6 +160,13 @@ class MainActivity : AppCompatActivity() {
     private fun navigateToSetting() {
         binding.imgSetting.setOnClickListener {
             val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            startActivity(intent)
+        }
+    }
+
+    private fun navigateToFavorite() {
+        binding.imgFavorite.setOnClickListener {
+            val intent = Intent(this, FavoriteActivity::class.java)
             startActivity(intent)
         }
     }

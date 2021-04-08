@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rasyidin.githubapp.core.adapter.UserAdapter
-import com.rasyidin.githubapp.core.data.source.Resource
+import com.rasyidin.githubapp.core.data.Resource
 import com.rasyidin.githubapp.core.domain.model.User
 import com.rasyidin.githubapp.databinding.FragmentFollowersFollowingBinding
 import com.rasyidin.githubapp.ui.detail.DetailActivity.Companion.EXTRA_DATA
@@ -34,7 +34,7 @@ class FollowersFollowingFragment : Fragment() {
 
     private val viewModel: DetailViewModel by sharedViewModel()
 
-    private var user: User? = null
+    private var username: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +47,7 @@ class FollowersFollowingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
-            user = activity?.intent?.getParcelableExtra(EXTRA_DATA)
+            username = activity?.intent?.getStringExtra(EXTRA_DATA)
 
             setupRecyclerView()
 
@@ -67,14 +67,14 @@ class FollowersFollowingFragment : Fragment() {
     }
 
     private fun observeFollowing() {
-        viewModel.getUserFollowing(user?.username)
+        viewModel.getUserFollowing(username)
         viewModel.followingUser.observe(viewLifecycleOwner) { resource ->
             showUserFollowersFollowing(resource)
         }
     }
 
     private fun observeFollowers() {
-        viewModel.getUserFollowers(user?.username)
+        viewModel.getUserFollowers(username)
         viewModel.followersUser.observe(viewLifecycleOwner) { resource ->
             showUserFollowersFollowing(resource)
         }
