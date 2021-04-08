@@ -1,6 +1,7 @@
 package com.rasyidin.githubapp
 
 import android.app.Application
+import com.rasyidin.githubapp.core.di.databaseModule
 import com.rasyidin.githubapp.core.di.networkModule
 import com.rasyidin.githubapp.core.di.repositoryModule
 import com.rasyidin.githubapp.di.useCaseModule
@@ -24,6 +25,7 @@ class MyApplication: Application() {
                 listOf(
                     repositoryModule,
                     networkModule,
+                    databaseModule,
                     useCaseModule,
                     viewModelModule
                 )

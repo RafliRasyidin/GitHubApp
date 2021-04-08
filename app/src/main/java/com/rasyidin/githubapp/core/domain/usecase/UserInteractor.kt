@@ -1,6 +1,6 @@
 package com.rasyidin.githubapp.core.domain.usecase
 
-import com.rasyidin.githubapp.core.data.source.Resource
+import com.rasyidin.githubapp.core.data.Resource
 import com.rasyidin.githubapp.core.domain.model.User
 import com.rasyidin.githubapp.core.domain.repository.IUserRepository
 import kotlinx.coroutines.flow.Flow
@@ -24,5 +24,17 @@ class UserInteractor(private val userRepository: IUserRepository) : IUserUseCase
 
     override suspend fun searchUsers(query: String?): Resource<List<User>> {
         return userRepository.searchUsers(query)
+    }
+
+    override fun getFavoriteUsers(): Flow<List<User>> {
+        return userRepository.getFavoriteUsers()
+    }
+
+    override suspend fun insertFavorite(user: User) {
+        userRepository.insertFavorite(user)
+    }
+
+    override suspend fun deleteFavorite(user: User) {
+        userRepository.deleteFavorite(user)
     }
 }

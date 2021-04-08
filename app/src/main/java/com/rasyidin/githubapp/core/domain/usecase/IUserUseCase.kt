@@ -1,6 +1,6 @@
 package com.rasyidin.githubapp.core.domain.usecase
 
-import com.rasyidin.githubapp.core.data.source.Resource
+import com.rasyidin.githubapp.core.data.Resource
 import com.rasyidin.githubapp.core.domain.model.User
 import kotlinx.coroutines.flow.Flow
 
@@ -15,4 +15,10 @@ interface IUserUseCase {
     fun getUserFollowing(username: String?): Flow<Resource<List<User>>>
 
     suspend fun searchUsers(query: String?): Resource<List<User>>
+
+    fun getFavoriteUsers(): Flow<List<User>>
+
+    suspend fun insertFavorite(user: User)
+
+    suspend fun deleteFavorite(user: User)
 }

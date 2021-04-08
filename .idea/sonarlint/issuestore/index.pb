@@ -1,14 +1,10 @@
 
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-{
-Kapp/src/main/java/com/rasyidin/githubapp/core/data/source/UserRepository.kt,a\4\a4cfbfa97e45e4f058106b30e62ca320a52e15f8
 „
 Tapp/src/main/java/com/rasyidin/githubapp/core/data/source/remote/RemoteDataSource.kt,2\e\2ef35dd69e1adfcbdcd6624392275363c95780b8
 ‡
 Wapp/src/main/java/com/rasyidin/githubapp/core/data/source/remote/network/ApiResponse.kt,f\9\f90f98952ca7df8bb50d62b288f61ac5d0e4abbd
-u
-Eapp/src/main/java/com/rasyidin/githubapp/core/data/source/Resource.kt,b\5\b5048a20341695cea7d073408d0bb98e45a784d2
 |
 Lapp/src/main/java/com/rasyidin/githubapp/core/domain/usecase/IUserUseCase.kt,d\3\d37266e58c0c7d980c93b524af5050f924c63163
 ‚
@@ -57,9 +53,27 @@ t
 Dapp/src/main/java/com/rasyidin/githubapp/core/adapter/BaseAdapter.kt,3\3\330ae0804e09318398f01e9448bf5753b70e888b
 ]
 -app/src/main/res/drawable/ic_broken_image.xml,b\7\b7acc13e07beebd8772d20dc1d1f78f628d578c1
-b
-2app/src/main/res/layout/vp_followers_following.xml,d\5\d5bc966d22ba1d95d056d569f65ae65140acb0c5
 R
 "app/src/main/res/values/colors.xml,9\6\969faa2a5d9f5e8390e958d2c07f2cfd54676e6b
+P
+ app/src/main/assets/no_data.json,8\7\871f4f5d003b2027ea3fde68fc45af13510d73eb
+}
+Mapp/src/main/java/com/rasyidin/githubapp/core/utils/ImageViewExtensionsFun.kt,3\8\389372b1bad3150f6756adea46752e8aa31578db
+y
+Iapp/src/main/java/com/rasyidin/githubapp/ui/favorite/FavoriteViewModel.kt,0\0\0072536c2c7b44350b452a35456d306ddfa32b54
+n
+>app/src/main/java/com/rasyidin/githubapp/core/data/Resource.kt,a\a\aa53fa9782f3bce10a3c7b3e888ca3a75ee85961
+t
+Dapp/src/main/java/com/rasyidin/githubapp/core/data/UserRepository.kt,f\9\f9e30d47bdb197dac9bee745ceb9e9d35d56d86d
+x
+Happ/src/main/java/com/rasyidin/githubapp/ui/favorite/FavoriteActivity.kt,0\2\02b20d6bdf08074f3949efcd0daa673eedeecaad
+„
+Tapp/src/main/java/com/rasyidin/githubapp/core/data/source/local/room/UserDatabase.kt,a\2\a2a371ca79741005131c0bab65e19b480228f0f3
+
+Oapp/src/main/java/com/rasyidin/githubapp/core/data/source/local/room/UserDao.kt,a\f\af51096920e25c6e0544ea8be8c8d74b0840c7db
 ‚
-Rapp/src/main/java/com/rasyidin/githubapp/core/utils/ImageViewExtensionsFunction.kt,7\a\7afb3cc71eb95af0706cc1e050f5e04d19f26685
+Rapp/src/main/java/com/rasyidin/githubapp/core/data/source/local/LocalDataSource.kt,8\e\8e46539c8f964384b16692e7e4363166a293fb5c
+ˆ
+Xapp/src/main/java/com/rasyidin/githubapp/core/data/source/local/entity/FavoriteEntity.kt,4\6\462bae6ea468b7e0edd2478ea375ffd160201a90
+z
+Japp/src/main/java/com/rasyidin/githubapp/core/data/NetworkBoundResource.kt,6\c\6c83c79d9d60e697df494008d27a1530a8a53153

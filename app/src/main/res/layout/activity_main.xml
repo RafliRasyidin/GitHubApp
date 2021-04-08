@@ -29,12 +29,12 @@
                     android:id="@+id/text_find"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/frame_setting"
+                    android:layout_below="@+id/frame_favorite"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_toStartOf="@+id/frame_setting"
+                    android:layout_toStartOf="@+id/frame_favorite"
                     android:fontFamily="@font/roboto"
                     android:text="@string/find_a_developer"
                     android:textColor="@color/white"
@@ -52,6 +52,30 @@
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/shp_et_background"
                     app:queryHint="@string/hint_search" />
+
+                <FrameLayout
+                    android:id="@+id/frame_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toStartOf="@id/frame_setting"
+                    android:elevation="10dp">
+
+                    <View
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/shp_round_green" />
+
+                    <ImageView
+                        android:id="@+id/img_favorite"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/image_favorite"
+                        android:src="@drawable/ic_favorite_white" />
+
+                </FrameLayout>
 
                 <FrameLayout
                     android:id="@+id/frame_setting"

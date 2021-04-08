@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:gravity="center_vertical"
+    android:theme="@style/Theme.GitHubApp.AppBarOverlay">
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@string/image_back"
+        android:src="@drawable/ic_back" />
+
+    <ImageView
+        android:id="@+id/img_favorite"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/image_favorite"
+        android:src="@drawable/ic_favorite_border_green" />
+</androidx.appcompat.widget.Toolbar>

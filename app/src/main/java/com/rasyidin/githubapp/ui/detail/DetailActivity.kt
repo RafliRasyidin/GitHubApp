@@ -1,15 +1,19 @@
 package com.rasyidin.githubapp.ui.detail
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.rasyidin.githubapp.R
 import com.rasyidin.githubapp.core.adapter.SectionPagerAdapter
 import com.rasyidin.githubapp.core.adapter.SectionPagerAdapter.Companion.TAB_TITLES
-import com.rasyidin.githubapp.core.data.source.Resource
+import com.rasyidin.githubapp.core.data.Resource
 import com.rasyidin.githubapp.core.domain.model.User
 import com.rasyidin.githubapp.core.utils.loadImage
+import com.rasyidin.githubapp.core.utils.toShortNumberDisplay
 import com.rasyidin.githubapp.databinding.ActivityDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,20 +29,43 @@ class DetailActivity : AppCompatActivity() {
 
     private var mediator: TabLayoutMediator? = null
 
+    private var user: User? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setSupportActionBar(binding.toolbar.root)
 
-        val user: User? = intent.getParcelableExtra(EXTRA_DATA)
+        val username = intent.getStringExtra(EXTRA_DATA)
 
-        subscribeToObserver(user?.username)
+        subscribeToObserver(username)
+
+        onFavoriteClicked()
 
         initViewPager()
 
         initTabLayout()
+
+        onBackClicked()
+
+    }
+
+    private fun onFavoriteClicked() {
+        binding.toolbar.imgFavorite.setOnClickListener {
+            user?.let {
+                val state = !it.isFavorite
+                if (state) {
+                    viewModel.insertFavorite(it)
+                    Snackbar.make(binding.root, R.string.favorited, Snackbar.LENGTH_SHORT).show()
+                } else {
+                    viewModel.deleteFavorite(it)
+                    Snackbar.make(binding.root, R.string.unfavorited, Snackbar.LENGTH_SHORT).show()
+                }
+                user?.isFavorite = state
+                favoriteState(state, binding.toolbar.imgFavorite)
+            }
+        }
     }
 
     private fun subscribeToObserver(username: String?) {
@@ -46,20 +73,13 @@ class DetailActivity : AppCompatActivity() {
         viewModel.detailUser.observe(this) { resource ->
             when (resource) {
                 is Resource.Success -> {
-                    resource.data?.let { user ->
-                        binding.apply {
-                            supportActionBar?.title = username
-                            imgUser.loadImage(
-                                user.avatar,
-                                R.drawable.ic_github,
-                                R.drawable.ic_broken_image
-                            )
-                            desc.tvRepository.text = user.repository.toString()
-                            desc.tvFollowing.text = user.following.toString()
-                            desc.tvFollowers.text = user.follower.toString()
-                            tvName.text = user.name
-                            tvCompany.text = user.company
-                            tvLocation.text = user.location
+                    val data = resource.data
+                    if (data != null) {
+                        if (user == null) {
+                            user = data
+                            showDetail(data)
+                        } else {
+                            showDetail(user)
                         }
                     }
                 }
@@ -69,6 +89,30 @@ class DetailActivity : AppCompatActivity() {
                 }
                 is Resource.Loading -> Unit
             }
+        }
+    }
+
+    private fun showDetail(user: User?) {
+        binding.apply {
+            user?.let { user ->
+                supportActionBar?.title = user.username
+                imgUser.loadImage(
+                    user.avatar,
+                    R.drawable.ic_github,
+                    R.drawable.ic_broken_image
+                )
+                desc.tvRepository.text = user.repository.toShortNumberDisplay()
+                desc.tvFollowing.text = user.following.toShortNumberDisplay()
+                desc.tvFollowers.text = user.follower.toShortNumberDisplay()
+                tvName.text = user.name
+                tvCompany.text = user.company
+                tvLocation.text = user.location
+
+                toolbar.imgFavorite.apply {
+                    favoriteState(user.isFavorite, this)
+                }
+            }
+
         }
     }
 
@@ -90,14 +134,10 @@ class DetailActivity : AppCompatActivity() {
         mediator?.attach()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return super.onSupportNavigateUp()
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
+    private fun onBackClicked() {
+        binding.toolbar.imgBack.setOnClickListener {
+            finish()
+        }
     }
 
     override fun onDestroy() {
@@ -105,6 +145,26 @@ class DetailActivity : AppCompatActivity() {
         mediator?.detach()
         mediator = null
         binding.vp.viewPager.adapter = null
+    }
+
+    private fun favoriteState(state: Boolean, image: ImageView) {
+        image.apply {
+            if (state) {
+                setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this@DetailActivity,
+                        R.drawable.ic_favorite_green
+                    )
+                )
+            } else {
+                setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this@DetailActivity,
+                        R.drawable.ic_favorite_border_green
+                    )
+                )
+            }
+        }
     }
 
 }

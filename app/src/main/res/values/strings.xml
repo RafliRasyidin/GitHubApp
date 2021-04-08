@@ -12,4 +12,9 @@
     <string name="error">Something Wrong</string>
     <string name="not_found">User not found</string>
     <string name="type">User</string>
+    <string name="favorite">Favorite</string>
+    <string name="image_favorite">Favorite Image</string>
+    <string name="image_back">Favorite Image</string>
+    <string name="favorited">Favorited</string>
+    <string name="unfavorited">Unfavorite</string>
 </resources>

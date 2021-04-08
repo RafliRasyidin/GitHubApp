@@ -13,4 +13,9 @@
     <string name="error">Sesuatu ada yang salah</string>
     <string name="not_found">Pengguna tidak ditemukan</string>
     <string name="type">Pengguna</string>
+    <string name="favorite">Favorit</string>
+    <string name="image_favorite">Gambar Favorit</string>
+    <string name="image_back">Gambar Kembali</string>
+    <string name="favorited">Disukai</string>
+    <string name="unfavorited">Tidak Disukai</string>
 </resources>

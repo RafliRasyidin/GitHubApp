@@ -4,9 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rasyidin.githubapp.core.data.source.Resource
+import com.rasyidin.githubapp.core.data.Resource
 import com.rasyidin.githubapp.core.domain.model.User
 import com.rasyidin.githubapp.core.domain.usecase.IUserUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -40,6 +41,16 @@ class DetailViewModel(private val userUseCase: IUserUseCase) : ViewModel() {
             userUseCase.getUserFollowing(username).collect { resource ->
                 _followingUser.value = resource
             }
+        }
+
+    fun insertFavorite(user: User) =
+        viewModelScope.launch(Dispatchers.IO) {
+            userUseCase.insertFavorite(user)
+        }
+
+    fun deleteFavorite(user: User) =
+        viewModelScope.launch(Dispatchers.IO) {
+            userUseCase.deleteFavorite(user)
         }
 
 }
