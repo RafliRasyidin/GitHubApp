@@ -3,6 +3,8 @@
     package="com.rasyidin.githubapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".MyApplication"
@@ -14,6 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GitHubApp">
+        <activity android:name=".ui.setting.SettingActivity" />
+
+        <receiver
+            android:name=".core.service.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity android:name=".ui.favorite.FavoriteActivity" />
         <activity
             android:name=".ui.splash.SplashActivity"
