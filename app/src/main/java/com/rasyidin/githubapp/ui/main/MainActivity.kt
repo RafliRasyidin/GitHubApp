@@ -2,7 +2,6 @@ package com.rasyidin.githubapp.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -17,6 +16,7 @@ import com.rasyidin.githubapp.core.data.Resource
 import com.rasyidin.githubapp.databinding.ActivityMainBinding
 import com.rasyidin.githubapp.ui.detail.DetailActivity
 import com.rasyidin.githubapp.ui.favorite.FavoriteActivity
+import com.rasyidin.githubapp.ui.setting.SettingActivity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.launch
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToSetting() {
         binding.imgSetting.setOnClickListener {
-            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            val intent = Intent(this@MainActivity, SettingActivity::class.java)
             startActivity(intent)
         }
     }

@@ -19,4 +19,17 @@
     <string name="unfavorited">Unfavorite</string>
     <string name="icon_location">Icon Location</string>
     <string name="icon_company">Icon Company</string>
+    <string name="notification_title" translatable="false">GitHub App!</string>
+    <string name="notification_message">Let\'s find great developers in GitHub!</string>
+    <string name="reminder_message">Reminder Activated</string>
+    <string name="cancel_reminder_message">Reminder Deactivated</string>
+    <string name="key_language" translatable="false">Language</string>
+    <string name="key_reminder" translatable="false">Reminder</string>
+    <string name="general">General</string>
+    <string name="language">Language</string>
+    <string name="value_language">English</string>
+    <string name="notifications">Notifications</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="reminder_summary">A reminder will notify you every 09.00</string>
+    <string name="settings">Settings</string>
 </resources>

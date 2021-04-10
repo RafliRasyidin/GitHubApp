@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:layout="@layout/layout_preferences_category"
+        app:title="@string/general">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="@string/key_language"
+            app:summary="@string/value_language"
+            app:title="@string/language" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/layout_preferences_category"
+        app:title="@string/notifications">
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            app:key="@string/key_reminder"
+            app:summary="@string/reminder_summary"
+            app:title="@string/daily_reminder" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

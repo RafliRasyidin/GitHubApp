@@ -20,4 +20,14 @@
     <string name="unfavorited">Tidak Disukai</string>
     <string name="icon_location">Gambar Lokasi</string>
     <string name="icon_company">Gambar Perusahaan</string>
+    <string name="notification_message">Ayo temukan developer hebat di GitHub!</string>
+    <string name="reminder_message">Pengingat Diaktifkan</string>
+    <string name="cancel_reminder_message">Pengingat Dimatikan</string>
+    <string name="general">Umum</string>
+    <string name="language">Bahasa</string>
+    <string name="value_language">Bahasa Indonesia</string>
+    <string name="notifications">Notifikasi</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="reminder_summary">Pengingat akan memberitahu setiap pukul 09.00</string>
+    <string name="settings">Pengaturan</string>
 </resources>
