@@ -9,6 +9,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.rasyidin.githubapp.R
 import com.rasyidin.githubapp.core.service.AlarmReceiver
+import org.koin.android.ext.android.inject
 
 class SettingPreferencesFragment : PreferenceFragmentCompat(),
     SharedPreferences.OnSharedPreferenceChangeListener {
@@ -19,7 +20,7 @@ class SettingPreferencesFragment : PreferenceFragmentCompat(),
     private lateinit var reminderPreference: SwitchPreference
     private lateinit var languagePreference: Preference
 
-    private lateinit var alarmReceiver: AlarmReceiver
+    private val alarmReceiver: AlarmReceiver by inject()
 
     private lateinit var sharedPreference: SharedPreferences
 
@@ -57,7 +58,6 @@ class SettingPreferencesFragment : PreferenceFragmentCompat(),
     }
 
     private fun init() {
-        alarmReceiver = AlarmReceiver()
         sharedPreference = preferenceManager.sharedPreferences
         keyReminder = resources.getString(R.string.key_reminder)
         keyLanguage = resources.getString(R.string.key_language)

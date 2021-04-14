@@ -4,6 +4,7 @@ import android.app.Application
 import com.rasyidin.githubapp.core.di.databaseModule
 import com.rasyidin.githubapp.core.di.networkModule
 import com.rasyidin.githubapp.core.di.repositoryModule
+import com.rasyidin.githubapp.core.di.serviceModule
 import com.rasyidin.githubapp.di.useCaseModule
 import com.rasyidin.githubapp.di.viewModelModule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -26,6 +27,7 @@ class MyApplication: Application() {
                     repositoryModule,
                     networkModule,
                     databaseModule,
+                    serviceModule,
                     useCaseModule,
                     viewModelModule
                 )

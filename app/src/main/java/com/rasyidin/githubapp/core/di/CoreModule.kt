@@ -7,6 +7,7 @@ import com.rasyidin.githubapp.core.data.source.local.room.UserDatabase
 import com.rasyidin.githubapp.core.data.source.remote.RemoteDataSource
 import com.rasyidin.githubapp.core.data.source.remote.network.ApiService
 import com.rasyidin.githubapp.core.domain.repository.IUserRepository
+import com.rasyidin.githubapp.core.service.AlarmReceiver
 import com.rasyidin.githubapp.core.utils.Constants.BASE_URL
 import com.rasyidin.githubapp.core.utils.Constants.REQUEST_TIMEOUT
 import okhttp3.OkHttpClient
@@ -52,4 +53,8 @@ val databaseModule = module {
         ).fallbackToDestructiveMigration()
             .build()
     }
+}
+
+val serviceModule = module {
+    single { AlarmReceiver() }
 }
