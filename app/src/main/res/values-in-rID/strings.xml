@@ -30,4 +30,5 @@
     <string name="daily_reminder">Pengingat Harian</string>
     <string name="reminder_summary">Pengingat akan memberitahu setiap pukul 09.00</string>
     <string name="settings">Pengaturan</string>
+    <string name="undo">URUNGKAN</string>
 </resources>

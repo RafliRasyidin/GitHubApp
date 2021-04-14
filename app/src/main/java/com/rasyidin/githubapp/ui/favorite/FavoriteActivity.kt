@@ -4,7 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.rasyidin.githubapp.R
 import com.rasyidin.githubapp.core.adapter.UserAdapter
 import com.rasyidin.githubapp.databinding.ActivityFavoriteBinding
@@ -70,11 +73,44 @@ class FavoriteActivity : AppCompatActivity() {
         adapter = userAdapter
         layoutManager = LinearLayoutManager(this@FavoriteActivity)
         setHasFixedSize(true)
+        itemTouchHelper.attachToRecyclerView(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         binding.rvUsers.adapter = null
     }
+
+    private val itemTouchHelper: ItemTouchHelper =
+        ItemTouchHelper(object : ItemTouchHelper.Callback() {
+            override fun getMovementFlags(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder
+            ): Int {
+                return makeMovementFlags(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
+            }
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val swipedPosition = viewHolder.bindingAdapterPosition
+                val user = userAdapter.getSwipedAdapter(swipedPosition)
+                viewModel.deleteUser(user)
+
+                val snackbar = Snackbar.make(
+                    viewHolder.itemView, R.string.unfavorited, Snackbar.LENGTH_LONG
+                )
+                snackbar.setAction(R.string.undo) {
+                    viewModel.insertFavorite(user)
+                }
+                snackbar.show()
+            }
+        })
 
 }

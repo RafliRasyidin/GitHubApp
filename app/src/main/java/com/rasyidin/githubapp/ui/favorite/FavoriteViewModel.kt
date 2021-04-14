@@ -18,4 +18,10 @@ class FavoriteViewModel(private val userUseCase: IUserUseCase) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             userUseCase.deleteFavorite(user)
         }
+
+    fun insertFavorite(user: User) =
+        viewModelScope.launch(Dispatchers.IO) {
+            userUseCase.insertFavorite(user)
+        }
+
 }
