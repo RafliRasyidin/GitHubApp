@@ -1,5 +1,6 @@
 package com.rasyidin.githubapp.core.domain.usecase
 
+import android.content.Context
 import android.database.Cursor
 import com.rasyidin.githubapp.core.data.Resource
 import com.rasyidin.githubapp.core.domain.model.User
@@ -15,7 +16,7 @@ interface IUserUseCase {
 
     fun getUserFollowing(username: String?): Flow<Resource<List<User>>>
 
-    suspend fun searchUsers(query: String?): Resource<List<User>>
+    fun searchUsers(query: String?): Flow<Resource<List<User>>>
 
     fun getFavoriteUsers(): Flow<List<User>>
 
@@ -26,4 +27,8 @@ interface IUserUseCase {
     suspend fun deleteFavoriteByUsername(username: String?)
 
     fun getFavoriteCursor(): Cursor
+
+    fun setReminder(context: Context)
+
+    fun cancelReminder(context: Context)
 }

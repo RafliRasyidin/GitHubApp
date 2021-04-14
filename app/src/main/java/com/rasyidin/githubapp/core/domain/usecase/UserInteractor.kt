@@ -1,5 +1,6 @@
 package com.rasyidin.githubapp.core.domain.usecase
 
+import android.content.Context
 import android.database.Cursor
 import com.rasyidin.githubapp.core.data.Resource
 import com.rasyidin.githubapp.core.domain.model.User
@@ -23,7 +24,7 @@ class UserInteractor(private val userRepository: IUserRepository) : IUserUseCase
         return userRepository.getUserFollowing(username)
     }
 
-    override suspend fun searchUsers(query: String?): Resource<List<User>> {
+    override fun searchUsers(query: String?): Flow<Resource<List<User>>> {
         return userRepository.searchUsers(query)
     }
 
@@ -45,5 +46,13 @@ class UserInteractor(private val userRepository: IUserRepository) : IUserUseCase
 
     override fun getFavoriteCursor(): Cursor {
         return userRepository.getFavoriteCursor()
+    }
+
+    override fun setReminder(context: Context) {
+        userRepository.setReminder(context)
+    }
+
+    override fun cancelReminder(context: Context) {
+        userRepository.cancelReminder(context)
     }
 }

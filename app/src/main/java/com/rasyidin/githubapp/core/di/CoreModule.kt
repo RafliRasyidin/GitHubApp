@@ -21,7 +21,8 @@ import java.util.concurrent.TimeUnit
 val repositoryModule = module {
     single { RemoteDataSource(get()) }
     single { LocalDataSource(get()) }
-    single<IUserRepository> { UserRepository(get(), get()) }
+    single { AlarmReceiver() }
+    single<IUserRepository> { UserRepository(get(), get(), get()) }
 }
 
 val networkModule = module {
@@ -53,8 +54,4 @@ val databaseModule = module {
         ).fallbackToDestructiveMigration()
             .build()
     }
-}
-
-val serviceModule = module {
-    single { AlarmReceiver() }
 }
