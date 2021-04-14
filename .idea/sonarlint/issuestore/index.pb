@@ -79,8 +79,6 @@ _
 /app/src/main/res/drawable/ic_favorite_green.xml,4\3\4302ac0bdc956757ff9ebd4d371e19b75b40d554
 _
 /app/src/main/res/drawable/ic_favorite_white.xml,f\5\f54336e19928c0036b15eedf1f2f5aebed37fadf
-Z
-*app/src/main/res/layout/detail_toolbar.xml,5\2\52ec5fa12f61e9172accffab6809472da2b4dae8
 m
 =app/src/main/java/com/rasyidin/githubapp/core/utils/Helper.kt,a\4\a4b1584e8746177d907c4b4cc0a0e16ddcc3f86b
 U

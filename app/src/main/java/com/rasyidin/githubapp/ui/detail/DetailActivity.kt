@@ -36,6 +36,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar.root)
+        supportActionBar?.title = null
 
         val username = intent.getStringExtra(EXTRA_DATA)
 
@@ -95,18 +96,18 @@ class DetailActivity : AppCompatActivity() {
     private fun showDetail(user: User?) {
         binding.apply {
             user?.let { user ->
-                supportActionBar?.title = user.username
-                imgUser.loadImage(
+                detailContainer.imgUser.loadImage(
                     user.avatar,
                     R.drawable.ic_github,
                     R.drawable.ic_broken_image
                 )
-                desc.tvRepository.text = user.repository.toShortNumberDisplay()
-                desc.tvFollowing.text = user.following.toShortNumberDisplay()
-                desc.tvFollowers.text = user.follower.toShortNumberDisplay()
-                tvName.text = user.name
-                tvCompany.text = user.company
-                tvLocation.text = user.location
+                detailContainer.desc.tvRepository.text = user.repository.toShortNumberDisplay()
+                detailContainer.desc.tvFollowing.text = user.following.toShortNumberDisplay()
+                detailContainer.desc.tvFollowers.text = user.follower.toShortNumberDisplay()
+                toolbar.tvUsername.text = user.username
+                detailContainer.tvName.text = user.name
+                detailContainer.tvCompany.text = user.company
+                detailContainer.tvLocation.text = user.location
 
                 toolbar.imgFavorite.apply {
                     favoriteState(user.isFavorite, this)

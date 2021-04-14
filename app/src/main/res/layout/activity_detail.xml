@@ -1,112 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.detail.DetailActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/Theme.GitHubApp.AppBarOverlay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.GitHubApp.AppBarOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|snap"
+                app:toolbarId="@id/toolbar">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <include
+                        android:id="@+id/toolbar"
+                        layout="@layout/detail_toolbar" />
+
+                    <include
+                        android:id="@+id/detail_container"
+                        layout="@layout/detail_user_container" />
+
+                </LinearLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <include
-            android:id="@+id/toolbar"
-            layout="@layout/detail_toolbar" />
+            android:id="@+id/vp"
+            layout="@layout/vp_followers_following"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img_user"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
-        tools:src="@color/colorGrey" />
-
-    <include
-        android:id="@+id/desc"
-        layout="@layout/layout_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/img_user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_user"
-        app:layout_constraintTop_toTopOf="@+id/img_user" />
-
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_user"
-        tools:text="Name" />
-
-    <ImageView
-        android:id="@+id/img_company"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/icon_company"
-        android:src="@drawable/ic_company"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
-
-    <TextView
-        android:id="@+id/tv_company"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/img_company"
-        app:layout_constraintStart_toEndOf="@+id/img_company"
-        app:layout_constraintTop_toTopOf="@+id/img_company"
-        tools:text="Company" />
-
-    <ImageView
-        android:id="@+id/img_location"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/icon_location"
-        android:src="@drawable/ic_pin_location"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_company" />
-
-    <TextView
-        android:id="@+id/tv_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/img_location"
-        app:layout_constraintStart_toEndOf="@+id/img_location"
-        app:layout_constraintTop_toTopOf="@+id/img_location"
-        tools:text="Location" />
-
-    <include
-        android:id="@+id/vp"
-        layout="@layout/vp_followers_following"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_location"
-        app:layout_constraintVertical_bias="0.0" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
