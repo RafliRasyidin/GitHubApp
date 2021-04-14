@@ -13,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.rasyidin.githubapp.R
 import com.rasyidin.githubapp.core.adapter.UserAdapter
 import com.rasyidin.githubapp.core.data.Resource
+import com.rasyidin.githubapp.core.domain.model.User
 import com.rasyidin.githubapp.databinding.ActivityMainBinding
 import com.rasyidin.githubapp.ui.detail.DetailActivity
 import com.rasyidin.githubapp.ui.favorite.FavoriteActivity
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         navigateToSetting()
 
         navigateToFavorite()
+
     }
 
     private fun setupUserRecyclerView() = binding.rvUsers.apply {
@@ -95,56 +97,75 @@ class MainActivity : AppCompatActivity() {
         viewModel.getUsers.observe(this) { resource ->
             when (resource) {
                 is Resource.Success -> {
-                    binding.loading.visibility = View.GONE
-                    binding.lottieNoData.visibility = View.GONE
-                    resource.data?.let {
-                        userAdapter.setData(it)
-                    }
+                    showSuccess(resource)
                 }
                 is Resource.Error -> {
-                    binding.loading.visibility = View.GONE
-                    binding.lottieNoData.visibility = View.VISIBLE
-                    Toast.makeText(
-                        this,
-                        resources.getString(R.string.error),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    Log.e(TAG, "Message: ${resource.message}")
+                    showError(resource)
                 }
                 is Resource.Loading -> {
-                    binding.loading.visibility = View.VISIBLE
-                    binding.lottieNoData.visibility = View.GONE
+                    showLoading()
                 }
             }
         }
-        viewModel.searchUsers.observe(this) { resource ->
-            when (resource) {
-                is Resource.Success -> {
-                    binding.loading.visibility = View.GONE
-                    binding.lottieNoData.visibility = View.GONE
-                    binding.rvUsers.visibility = View.VISIBLE
-                    resource.data?.let {
-                        userAdapter.setData(it)
+
+        viewModel.searchUsers.observe(this) { user ->
+            lifecycleScope.launch {
+                user.observe(this@MainActivity) { resource ->
+                    when (resource) {
+                        is Resource.Success -> {
+                            showSuccess(resource)
+                        }
+                        is Resource.Error -> {
+                            showError(resource)
+                        }
+                        is Resource.Loading -> {
+                            showLoading()
+                        }
                     }
-                }
-                is Resource.Error -> {
-                    binding.loading.visibility = View.GONE
-                    binding.lottieNoData.visibility = View.VISIBLE
-                    binding.rvUsers.visibility = View.GONE
-                    Toast.makeText(
-                        this,
-                        resources.getString(R.string.not_found),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    Log.e(TAG, "Message: ${resource.message}")
-                }
-                is Resource.Loading -> {
-                    binding.rvUsers.visibility = View.GONE
-                    binding.loading.visibility = View.VISIBLE
-                    binding.lottieNoData.visibility = View.GONE
                 }
             }
         }
+    }
+
+    private fun showLoading() {
+        binding.rvUsers.visibility = View.GONE
+        binding.loading.visibility = View.VISIBLE
+        binding.lottieNoData.visibility = View.GONE
+        binding.errorContainer.root.visibility = View.GONE
+    }
+
+    private fun showSuccess(resource: Resource<List<User>>) {
+        binding.loading.visibility = View.GONE
+        binding.errorContainer.root.visibility = View.GONE
+
+        if (resource.data.isNullOrEmpty()) {
+            binding.lottieNoData.visibility = View.VISIBLE
+            binding.rvUsers.visibility = View.GONE
+            Toast.makeText(
+                this@MainActivity,
+                resources.getString(R.string.not_found),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            resource.data.let {
+                userAdapter.setData(it)
+            }
+            binding.lottieNoData.visibility = View.GONE
+            binding.rvUsers.visibility = View.VISIBLE
+        }
+    }
+
+    private fun showError(resource: Resource<List<User>>) {
+        binding.loading.visibility = View.GONE
+        binding.lottieNoData.visibility = View.GONE
+        binding.rvUsers.visibility = View.GONE
+        binding.errorContainer.root.visibility = View.VISIBLE
+        Toast.makeText(
+            this@MainActivity,
+            resources.getString(R.string.error),
+            Toast.LENGTH_SHORT
+        ).show()
+        Log.e(TAG, "Message: ${resource.message}")
     }
 
     private fun setupBottomSheet() {

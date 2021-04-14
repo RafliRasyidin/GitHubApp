@@ -31,7 +31,7 @@ class MainViewModel(private val userUseCase: IUserUseCase) : ViewModel() {
             it.trim().isNotEmpty()
         }
         .mapLatest { query ->
-            userUseCase.searchUsers(query)
+            userUseCase.searchUsers(query).asLiveData()
         }
         .asLiveData(viewModelScope.coroutineContext)
 

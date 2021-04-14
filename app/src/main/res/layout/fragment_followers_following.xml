@@ -40,4 +40,9 @@
         <include layout="@layout/shimmer_effect" />
     </com.facebook.shimmer.ShimmerFrameLayout>
 
+    <include
+        android:id="@+id/error_container"
+        layout="@layout/network_error"
+        android:visibility="gone" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

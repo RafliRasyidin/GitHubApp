@@ -195,16 +195,22 @@
                         app:layout_constraintTop_toBottomOf="@+id/view_decor"
                         app:shimmer_auto_start="true">
 
-                        <include layout="@layout/shimmer_effect"/>
+                        <include layout="@layout/shimmer_effect" />
                     </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <include
+                        android:id="@+id/error_container"
+                        layout="@layout/network_error"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.core.widget.NestedScrollView>
         </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

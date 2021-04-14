@@ -1,5 +1,6 @@
 package com.rasyidin.githubapp.ui.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -52,6 +53,8 @@ class FollowersFollowingFragment : Fragment() {
             setupRecyclerView()
 
             setupViewPager()
+
+            onItemClick()
         }
     }
 
@@ -88,15 +91,26 @@ class FollowersFollowingFragment : Fragment() {
                 resource.data?.let { users ->
                     userAdapter.setData(users)
                 }
+                binding.errorContainer.root.visibility = View.GONE
             }
             is Resource.Error -> {
                 binding.loading.visibility = View.GONE
-                binding.lottieNoData.visibility = View.VISIBLE
+                binding.lottieNoData.visibility = View.GONE
+                binding.errorContainer.root.visibility = View.VISIBLE
             }
             is Resource.Loading -> {
                 binding.loading.visibility = View.VISIBLE
                 binding.lottieNoData.visibility = View.GONE
+                binding.errorContainer.root.visibility = View.GONE
             }
+        }
+    }
+
+    private fun onItemClick() {
+        userAdapter.onItemClickListener = { selectedItem ->
+            val intent = Intent(activity, DetailActivity::class.java)
+            intent.putExtra(EXTRA_DATA, selectedItem.username)
+            startActivity(intent)
         }
     }
 

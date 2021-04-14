@@ -8,7 +8,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.rasyidin.githubapp.R
-import com.rasyidin.githubapp.core.service.AlarmReceiver
+import com.rasyidin.githubapp.core.domain.usecase.IUserUseCase
 import org.koin.android.ext.android.inject
 
 class SettingPreferencesFragment : PreferenceFragmentCompat(),
@@ -20,13 +20,12 @@ class SettingPreferencesFragment : PreferenceFragmentCompat(),
     private lateinit var reminderPreference: SwitchPreference
     private lateinit var languagePreference: Preference
 
-    private val alarmReceiver: AlarmReceiver by inject()
+    private val userUseCase: IUserUseCase by inject()
 
     private lateinit var sharedPreference: SharedPreferences
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.setting_preferences)
-        /*preferenceManager.createPreferenceScreen(context)*/
 
         init()
 
@@ -39,11 +38,11 @@ class SettingPreferencesFragment : PreferenceFragmentCompat(),
         if (key == keyReminder) {
             if (reminderPreference.isChecked) {
                 context?.let {
-                    alarmReceiver.setReminder(it)
+                    userUseCase.setReminder(it)
                 }
             } else {
                 context?.let {
-                    alarmReceiver.cancelReminder(it)
+                    userUseCase.cancelReminder(it)
                 }
             }
         }
