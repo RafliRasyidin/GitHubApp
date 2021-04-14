@@ -1,5 +1,6 @@
 package com.rasyidin.githubapp.core.data
 
+import android.database.Cursor
 import android.util.Log
 import com.rasyidin.githubapp.core.data.source.local.LocalDataSource
 import com.rasyidin.githubapp.core.data.source.remote.RemoteDataSource
@@ -76,25 +77,6 @@ class UserRepository(
                 } as Flow<Resource<User>>
             }
         }.asFlow()
-
-        /*flow {
-                emit(Resource.Loading(null))
-                remoteDataSource.getDetailUser(username).collect { response ->
-                    when (response) {
-                        is ApiResponse.Success -> {
-                            emit(Resource.Success(Mapper.toUser(response.data)))
-                        }
-                        is ApiResponse.Empty -> {
-                            emit(Resource.Error(null, response.toString()))
-                            Log.e(TAG, response.toString())
-                        }
-                        is ApiResponse.Error -> {
-                            emit(Resource.Error(null, response.message))
-                            Log.e(TAG, response.toString())
-                        }
-                    }
-                }
-            } as Flow<Resource<User>>*/
     }
 
     override fun getUserFollowers(username: String?): Flow<Resource<List<User>>> {
@@ -167,5 +149,13 @@ class UserRepository(
     override suspend fun deleteFavorite(user: User) {
         val userEntity = Mapper.toFavoriteEntity(user)
         localDataSource.deleteFavorite(userEntity)
+    }
+
+    override suspend fun deleteFavoriteByUsername(username: String?) {
+        localDataSource.deleteFavoriteByUsername(username)
+    }
+
+    override fun getFavoriteCursor(): Cursor {
+        return localDataSource.getFavoriteCursor()
     }
 }

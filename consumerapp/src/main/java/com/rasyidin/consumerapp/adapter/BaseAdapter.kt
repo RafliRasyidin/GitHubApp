@@ -1,4 +1,4 @@
-package com.rasyidin.githubapp.core.adapter
+package com.rasyidin.consumerapp.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +16,6 @@ abstract class BaseAdapter<T>(private val layoutId: Int) :
         data.addAll(listItem)
         notifyDataSetChanged()
     }
-
-    fun getSwipedAdapter(swipedPosition: Int): T = data[swipedPosition]
 
     var onItemClickListener: ((T) -> Unit)? = null
 

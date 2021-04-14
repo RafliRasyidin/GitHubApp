@@ -1,5 +1,6 @@
 package com.rasyidin.githubapp.core.domain.usecase
 
+import android.database.Cursor
 import com.rasyidin.githubapp.core.data.Resource
 import com.rasyidin.githubapp.core.domain.model.User
 import kotlinx.coroutines.flow.Flow
@@ -21,4 +22,8 @@ interface IUserUseCase {
     suspend fun insertFavorite(user: User)
 
     suspend fun deleteFavorite(user: User)
+
+    suspend fun deleteFavoriteByUsername(username: String?)
+
+    fun getFavoriteCursor(): Cursor
 }

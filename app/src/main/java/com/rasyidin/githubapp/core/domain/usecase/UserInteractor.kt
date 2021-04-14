@@ -1,5 +1,6 @@
 package com.rasyidin.githubapp.core.domain.usecase
 
+import android.database.Cursor
 import com.rasyidin.githubapp.core.data.Resource
 import com.rasyidin.githubapp.core.domain.model.User
 import com.rasyidin.githubapp.core.domain.repository.IUserRepository
@@ -36,5 +37,13 @@ class UserInteractor(private val userRepository: IUserRepository) : IUserUseCase
 
     override suspend fun deleteFavorite(user: User) {
         userRepository.deleteFavorite(user)
+    }
+
+    override suspend fun deleteFavoriteByUsername(username: String?) {
+        userRepository.deleteFavoriteByUsername(username)
+    }
+
+    override fun getFavoriteCursor(): Cursor {
+        return userRepository.getFavoriteCursor()
     }
 }

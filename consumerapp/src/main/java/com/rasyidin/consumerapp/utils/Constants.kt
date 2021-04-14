@@ -1,4 +1,4 @@
-package com.rasyidin.githubapp.core.utils
+package com.rasyidin.consumerapp.utils
 
 object Constants {
 

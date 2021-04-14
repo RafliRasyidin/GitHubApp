@@ -4,10 +4,11 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.rasyidin.githubapp.core.utils.Constants.TABLE_FAVORITE
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "favorite")
+@Entity(tableName = TABLE_FAVORITE)
 data class FavoriteEntity(
     @PrimaryKey
     @ColumnInfo(name = "username")

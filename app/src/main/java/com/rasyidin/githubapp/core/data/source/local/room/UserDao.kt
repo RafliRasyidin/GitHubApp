@@ -1,5 +1,6 @@
 package com.rasyidin.githubapp.core.data.source.local.room
 
+import android.database.Cursor
 import androidx.room.*
 import com.rasyidin.githubapp.core.data.source.local.entity.FavoriteEntity
 import kotlinx.coroutines.flow.Flow
@@ -18,4 +19,10 @@ interface UserDao {
 
     @Delete
     suspend fun deleteFavorite(favoriteEntity: FavoriteEntity)
+
+    @Query("DELETE FROM favorite WHERE username = :username")
+    suspend fun deleteFavoriteByUsername(username: String?)
+
+    @Query("SELECT * FROM favorite")
+    fun getFavoriteCursor(): Cursor
 }
