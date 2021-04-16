@@ -7,10 +7,12 @@ import com.rasyidin.githubapp.core.data.source.local.LocalDataSource
 import com.rasyidin.githubapp.core.data.source.remote.RemoteDataSource
 import com.rasyidin.githubapp.core.data.source.remote.network.ApiResponse
 import com.rasyidin.githubapp.core.data.source.remote.response.UserItemResponse
+import com.rasyidin.githubapp.core.domain.model.Repository
 import com.rasyidin.githubapp.core.domain.model.User
 import com.rasyidin.githubapp.core.domain.repository.IUserRepository
 import com.rasyidin.githubapp.core.service.AlarmReceiver
 import com.rasyidin.githubapp.core.utils.Mapper
+import com.rasyidin.githubapp.core.utils.toListRepository
 import com.rasyidin.githubapp.core.utils.toListUser
 import kotlinx.coroutines.flow.*
 
@@ -120,6 +122,26 @@ class UserRepository(
                 }
             }
         } as Flow<Resource<List<User>>>
+    }
+
+    override fun getUserRepository(username: String?): Flow<Resource<List<Repository>>> {
+        return flow {
+            emit(Resource.Loading())
+            remoteDataSource.getUserRepository(username).collect { response ->
+                when (response) {
+                    is ApiResponse.Success -> {
+                        emit(Resource.Success(response.data.toListRepository()))
+                    }
+                    is ApiResponse.Empty -> {
+                        emit(Resource.Success<List<Repository>>(emptyList()))
+                    }
+                    is ApiResponse.Error -> {
+                        emit(Resource.Error(null, response.message))
+                        Log.e(TAG, response.message)
+                    }
+                }
+            }
+        } as Flow<Resource<List<Repository>>>
     }
 
     override fun searchUsers(query: String?): Flow<Resource<List<User>>> {

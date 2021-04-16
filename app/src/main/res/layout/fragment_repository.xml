@@ -4,16 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail.FollowersFollowingFragment">
+    tools:context=".ui.detail.RepositoryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_users"
+        android:id="@+id/rv_repository"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_list_user" />
+        tools:listitem="@layout/item_list_repository" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_no_data"
@@ -27,7 +24,6 @@
         app:lottie_fileName="empty_box.json"
         app:lottie_loop="true" />
 
-
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/loading"
         android:layout_width="match_parent"
@@ -37,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shimmer_auto_start="true">
 
-        <include layout="@layout/shimmer_effect_list_user" />
+        <include layout="@layout/shimmer_effect_list_repository" />
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <include

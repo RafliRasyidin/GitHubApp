@@ -2,6 +2,8 @@ package com.rasyidin.githubapp.core.utils
 
 import com.rasyidin.githubapp.core.data.source.local.entity.FavoriteEntity
 import com.rasyidin.githubapp.core.data.source.remote.response.UserItemResponse
+import com.rasyidin.githubapp.core.data.source.remote.response.UserRepositoryResponse
+import com.rasyidin.githubapp.core.domain.model.Repository
 import com.rasyidin.githubapp.core.domain.model.User
 
 object Mapper {
@@ -99,4 +101,21 @@ fun List<FavoriteEntity>.toListUser(): List<User> {
         users.add(user)
     }
     return users
+}
+
+fun List<UserRepositoryResponse>.toListRepository(): List<Repository> {
+    val repositories = ArrayList<Repository>()
+    this.map {
+        val repository = Repository(
+            name = it.name,
+            reposUrl = it.reposUrl,
+            description = it.description,
+            starsCount = it.starsCount,
+            watchersCount = it.watchersCount,
+            forksCount = it.forksCount,
+            language = it.language
+        )
+        repositories.add(repository)
+    }
+    return repositories
 }

@@ -2,6 +2,7 @@ package com.rasyidin.githubapp.core.data.source.remote.network
 
 import com.rasyidin.githubapp.BuildConfig
 import com.rasyidin.githubapp.core.data.source.remote.response.UserItemResponse
+import com.rasyidin.githubapp.core.data.source.remote.response.UserRepositoryResponse
 import com.rasyidin.githubapp.core.data.source.remote.response.UsersResponse
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -37,4 +38,10 @@ interface ApiService {
     suspend fun searchUsers(
         @Query("q") query: String?
     ): UsersResponse
+
+    @GET("users/{username}/repos")
+    @Headers("Authorization: token ${BuildConfig.API_KEY}")
+    suspend fun getUserRepos(
+        @Path("username") username: String?
+    ): List<UserRepositoryResponse>
 }

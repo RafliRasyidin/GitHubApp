@@ -31,6 +31,8 @@ class DetailActivity : AppCompatActivity() {
 
     private var user: User? = null
 
+    private var username: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -38,7 +40,7 @@ class DetailActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar.root)
         supportActionBar?.title = null
 
-        val username = intent.getStringExtra(EXTRA_DATA)
+        username = intent.getStringExtra(EXTRA_DATA)
 
         subscribeToObserver(username)
 
@@ -118,10 +120,10 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initViewPager() {
-        val sectionPagerAdapter = SectionPagerAdapter(supportFragmentManager, lifecycle)
+        val sectionPagerAdapter = SectionPagerAdapter(this, username)
         binding.vp.viewPager.apply {
             adapter = sectionPagerAdapter
-            offscreenPageLimit = 2
+            offscreenPageLimit = 3
         }
     }
 
@@ -129,7 +131,8 @@ class DetailActivity : AppCompatActivity() {
         mediator = TabLayoutMediator(binding.vp.tabs, binding.vp.viewPager) { tab, pos ->
             tab.text = when (pos) {
                 0 -> getString(TAB_TITLES[0])
-                else -> getString(TAB_TITLES[1])
+                1 -> getString(TAB_TITLES[1])
+                else -> getString(TAB_TITLES[2])
             }
         }
         mediator?.attach()

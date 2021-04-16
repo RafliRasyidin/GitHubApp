@@ -71,8 +71,6 @@ Rapp/src/main/java/com/rasyidin/githubapp/core/data/source/local/LocalDataSource
 Xapp/src/main/java/com/rasyidin/githubapp/core/data/source/local/entity/FavoriteEntity.kt,4\6\462bae6ea468b7e0edd2478ea375ffd160201a90
 z
 Japp/src/main/java/com/rasyidin/githubapp/core/data/NetworkBoundResource.kt,6\c\6c83c79d9d60e697df494008d27a1530a8a53153
-f
-6app/src/main/res/drawable/ic_favorite_border_green.xml,d\b\db1113c6553257a5238c3346fe0195c39df26cda
 _
 /app/src/main/res/drawable/ic_favorite_green.xml,4\3\4302ac0bdc956757ff9ebd4d371e19b75b40d554
 _
@@ -153,3 +151,11 @@ F
 consumerapp/.gitignore,f\f\ffd569762cd627c7c47b61bab8365d9a4fbe3bf8
 ]
 -app/src/main/res/layout/activity_favorite.xml,8\7\875622353c0dee6535d4a560c0c4ba8ee2b9f4b5
+“
+capp/src/main/java/com/rasyidin/githubapp/core/data/source/remote/response/UserRepositoryResponse.kt,d\7\d72c91bda0838a5722941f400a117b962dbb51c9
+z
+Japp/src/main/java/com/rasyidin/githubapp/core/adapter/RepositoryAdapter.kt,e\0\e0bf48a34a5a4612ee6974e91cc018b982031eda
+x
+Happ/src/main/java/com/rasyidin/githubapp/core/domain/model/Repository.kt,7\1\71e1180170fc3cbe8daace74fa6175798299a4cf
+x
+Happ/src/main/java/com/rasyidin/githubapp/ui/detail/RepositoryFragment.kt,e\9\e9ed813f8cd77cff66f0492e9c818d9305c3c900

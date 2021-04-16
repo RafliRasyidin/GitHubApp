@@ -3,6 +3,7 @@ package com.rasyidin.githubapp.core.domain.usecase
 import android.content.Context
 import android.database.Cursor
 import com.rasyidin.githubapp.core.data.Resource
+import com.rasyidin.githubapp.core.domain.model.Repository
 import com.rasyidin.githubapp.core.domain.model.User
 import com.rasyidin.githubapp.core.domain.repository.IUserRepository
 import kotlinx.coroutines.flow.Flow
@@ -22,6 +23,10 @@ class UserInteractor(private val userRepository: IUserRepository) : IUserUseCase
 
     override fun getUserFollowing(username: String?): Flow<Resource<List<User>>> {
         return userRepository.getUserFollowing(username)
+    }
+
+    override fun getUserRepository(username: String?): Flow<Resource<List<Repository>>> {
+        return userRepository.getUserRepository(username)
     }
 
     override fun searchUsers(query: String?): Flow<Resource<List<User>>> {

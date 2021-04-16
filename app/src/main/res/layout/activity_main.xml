@@ -195,7 +195,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/view_decor"
                         app:shimmer_auto_start="true">
 
-                        <include layout="@layout/shimmer_effect" />
+                        <include layout="@layout/shimmer_effect_list_user" />
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
                     <include

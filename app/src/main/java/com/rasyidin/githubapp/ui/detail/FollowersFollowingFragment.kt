@@ -18,11 +18,13 @@ class FollowersFollowingFragment : Fragment() {
 
     companion object {
         private const val ARG_SECTION_INDEX = "section_index"
+        private const val ARG_USERNAME = "arg_username"
 
-        fun newInstance(index: Int): FollowersFollowingFragment {
+        fun newInstance(index: Int, username: String?): FollowersFollowingFragment {
             val fragment = FollowersFollowingFragment()
             val bundle = Bundle()
             bundle.putInt(ARG_SECTION_INDEX, index)
+            bundle.putString(ARG_USERNAME, username)
             fragment.arguments = bundle
             return fragment
         }
@@ -48,7 +50,7 @@ class FollowersFollowingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
-            username = activity?.intent?.getStringExtra(EXTRA_DATA)
+            username = arguments?.getString(ARG_USERNAME)
 
             setupRecyclerView()
 
@@ -64,8 +66,8 @@ class FollowersFollowingFragment : Fragment() {
             index = arguments?.getInt(ARG_SECTION_INDEX, 0)
         }
         when (index) {
-            0 -> observeFollowers()
-            else -> observeFollowing()
+            0 -> observeFollowing()
+            1 -> observeFollowers()
         }
     }
 
@@ -87,9 +89,10 @@ class FollowersFollowingFragment : Fragment() {
         when (resource) {
             is Resource.Success -> {
                 binding.loading.visibility = View.GONE
-                binding.lottieNoData.visibility = View.GONE
-                resource.data?.let { users ->
-                    userAdapter.setData(users)
+                if (resource.data.isNullOrEmpty()) {
+                    binding.lottieNoData.visibility = View.VISIBLE
+                } else {
+                    userAdapter.setData(resource.data)
                 }
                 binding.errorContainer.root.visibility = View.GONE
             }
