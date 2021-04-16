@@ -55,7 +55,7 @@ dependencies {
     implementation "com.facebook.shimmer:shimmer:0.5.0"
 
     // Lottie
-    implementation "com.airbnb.android:lottie:3.4.1"
+    implementation "com.airbnb.android:lottie:3.6.1"
 
     //koin
     implementation "org.koin:koin-core:2.2.2"
