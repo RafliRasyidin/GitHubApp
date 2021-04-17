@@ -20,14 +20,13 @@ class FollowersFollowingFragment : Fragment() {
         private const val ARG_SECTION_INDEX = "section_index"
         private const val ARG_USERNAME = "arg_username"
 
-        fun newInstance(index: Int, username: String?): FollowersFollowingFragment {
-            val fragment = FollowersFollowingFragment()
-            val bundle = Bundle()
-            bundle.putInt(ARG_SECTION_INDEX, index)
-            bundle.putString(ARG_USERNAME, username)
-            fragment.arguments = bundle
-            return fragment
-        }
+        fun newInstance(index: Int, username: String?) =
+            FollowersFollowingFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(ARG_SECTION_INDEX, index)
+                    putString(ARG_USERNAME, username)
+                }
+            }
     }
 
     private var _binding: FragmentFollowersFollowingBinding? = null
@@ -66,8 +65,8 @@ class FollowersFollowingFragment : Fragment() {
             index = arguments?.getInt(ARG_SECTION_INDEX, 0)
         }
         when (index) {
-            0 -> observeFollowing()
-            1 -> observeFollowers()
+            1 -> observeFollowing()
+            2 -> observeFollowers()
         }
     }
 

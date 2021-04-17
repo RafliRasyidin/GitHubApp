@@ -14,7 +14,7 @@ class RepositoryAdapter : BaseAdapter<Repository>(R.layout.item_list_repository)
             tvTitle.text = repository.name
             tvDesc.text = repository.description
             tvLanguage.text = repository.language
-            tvStartCount.text = repository.starsCount.toShortNumberDisplay()
+            tvStarCount.text = repository.starsCount.toShortNumberDisplay()
             tvWatchersCount.text = repository.watchersCount.toShortNumberDisplay()
             tvForkCount.text = repository.forksCount.toShortNumberDisplay()
 

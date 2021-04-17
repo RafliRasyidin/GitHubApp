@@ -13,15 +13,15 @@ class SectionPagerAdapter(activity: AppCompatActivity, private val username: Str
 
     companion object {
         @StringRes
-        val TAB_TITLES = intArrayOf(R.string.following, R.string.followers, R.string.repository)
+        val TAB_TITLES = intArrayOf(R.string.repository, R.string.following, R.string.followers)
     }
 
     override fun getItemCount(): Int = TAB_TITLES.size
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0, 1 -> FollowersFollowingFragment.newInstance(position, username)
-            else -> RepositoryFragment.newInstance(username)
+            0 -> RepositoryFragment.newInstance(username)
+            else -> FollowersFollowingFragment.newInstance(position, username)
         }
     }
 }

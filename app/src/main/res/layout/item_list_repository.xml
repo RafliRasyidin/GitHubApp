@@ -8,7 +8,7 @@
     android:layout_marginTop="4dp"
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="4dp"
-    android:elevation="14dp"
+    android:elevation="20dp"
     android:padding="10dp"
     app:cardCornerRadius="20dp">
 
@@ -39,6 +39,7 @@
             android:layout_marginEnd="16dp"
             android:maxLines="2"
             android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
@@ -83,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="@string/_0"
+            android:textColor="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="@+id/img_fork"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/img_fork" />
@@ -105,16 +107,18 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:text="@string/_0"
+            android:textColor="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="@+id/img_eye"
             app:layout_constraintEnd_toStartOf="@id/img_fork"
             app:layout_constraintTop_toTopOf="@+id/img_eye" />
 
         <TextView
-            android:id="@+id/tv_start_count"
+            android:id="@+id/tv_star_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:text="@string/_0"
+            android:textColor="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="@+id/img_star"
             app:layout_constraintEnd_toStartOf="@+id/img_eye"
             app:layout_constraintTop_toTopOf="@+id/img_star" />
@@ -127,7 +131,7 @@
             android:contentDescription="@string/image_star"
             android:src="@drawable/ic_star"
             app:layout_constraintBottom_toBottomOf="@+id/view_decor"
-            app:layout_constraintEnd_toStartOf="@+id/tv_start_count"
+            app:layout_constraintEnd_toStartOf="@+id/tv_star_count"
             app:layout_constraintTop_toTopOf="@+id/view_decor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
